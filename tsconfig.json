@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": true,
+    "target": "es2015",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "outDir": "dist",
+    "skipLibCheck": true
+  },
+  "exclude": [ "node_modules", "dist", "build" ]
+}

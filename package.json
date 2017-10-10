@@ -1,0 +1,26 @@
+{
+  "name": "lit-html-starter",
+  "version": "1.0.0",
+  "description": "Lit-HTML Starter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuinntyneBrown/lit-html-starter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuinntyneBrown/lit-html-starter/issues"
+  },
+  "homepage": "https://github.com/QuinntyneBrown/lit-html-starter#readme",
+  "dependencies": {
+    "awesome-typescript-loader": "^3.2.3",
+    "html-loader": "^0.5.1",
+    "lit-html": "^0.7.1",
+    "raw-loader": "^0.5.1",
+    "webpack": "^3.6.0"
+  }
+}
