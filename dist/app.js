@@ -69,22 +69,67 @@
 
 "use strict";
 
-const lit_html_1 = __webpack_require__(1);
-class HelloWorldComponent extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: "open" });
-    }
-    connectedCallback() {
-        lit_html_1.render(lit_html_1.html ``, this.shadowRoot);
-    }
-}
-exports.HelloWorldComponent = HelloWorldComponent;
-customElements.define("hello-world", HelloWorldComponent);
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
 
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const lit_html_1 = __webpack_require__(2);
+class HelloWorldComponent extends HTMLElement {
+    constructor() {
+        super();
+    }
+    static get observedAttributes() {
+        return [];
+    }
+    connectedCallback() {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.attachShadow({ mode: 'open' });
+            if (!this.hasAttribute('role'))
+                this.setAttribute('role', 'helloworld');
+            this._render();
+            this._setEventListeners();
+        });
+    }
+    _render() {
+        lit_html_1.render(lit_html_1.html `
+            <style>
+
+            </style>
+
+            <h1>lit-html</h1>`, this.shadowRoot);
+    }
+    _setEventListeners() {
+    }
+    disconnectedCallback() {
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+            default:
+                break;
+        }
+    }
+}
+exports.HelloWorldComponent = HelloWorldComponent;
+customElements.define(`ce-hello-world`, HelloWorldComponent);
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

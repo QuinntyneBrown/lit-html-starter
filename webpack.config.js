@@ -20,7 +20,7 @@ module.exports = {
                 test: /\.ts$/,
                 use: [{
                     loader: 'awesome-typescript-loader'
-                }
+                }   
                 ],
                 exclude: [/\.(spec|e2e)\.ts$/]
             },

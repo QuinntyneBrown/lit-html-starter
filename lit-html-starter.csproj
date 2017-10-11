@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="index.html" />
     <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
@@ -83,7 +84,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="arc\main.ts" />
+    <TypeScriptCompile Include="src\hello-world.component.ts" />
+    <TypeScriptCompile Include="src\main.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="package.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
