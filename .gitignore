@@ -24,6 +24,8 @@ bld/
 [Oo]bj/
 [Ll]og/
 
+dist
+
 src/**/*.js
 src/**/*.js.map
 
