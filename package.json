@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/QuinntyneBrown/lit-html-starter#readme",
   "dependencies": {
-    "awesome-typescript-loader": "^3.2.3",
-    "html-loader": "^0.5.1",
+    "awesome-typescript-loader": "3.2.3",
+    "html-loader": "0.5.1",
     "lit-html": "^0.7.1",
-    "live-server": "^1.2.0",
-    "raw-loader": "^0.5.1",
-    "typescript": "^2.5.3",
-    "webpack": "^3.6.0"
+    "live-server": "1.2.0",
+    "raw-loader": "0.5.1",
+    "typescript": "2.6.0-rc",
+    "webpack": "3.6.0"
   }
 }

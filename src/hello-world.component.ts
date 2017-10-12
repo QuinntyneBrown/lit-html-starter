@@ -25,7 +25,7 @@ export class HelloWorldComponent extends HTMLElement {
 
             </style>
 
-            <h1>lit-html</h1>`, this.shadowRoot);
+            <h1>Hello World via lit-html</h1>`, this.shadowRoot);
     }
     
     private _setEventListeners() {
@@ -44,4 +44,4 @@ export class HelloWorldComponent extends HTMLElement {
     }
 }
 
-customElements.define(`ce-hello-world`,HelloWorldComponent);
+customElements.define(`ce-hello-world`, HelloWorldComponent);
