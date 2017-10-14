@@ -1,4 +1,5 @@
 import { render, html } from "lit-html";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 export class HelloWorldComponent extends HTMLElement {
     constructor() {
@@ -6,7 +7,9 @@ export class HelloWorldComponent extends HTMLElement {
     }
 
     static get observedAttributes () {
-        return [];
+        return [
+            "hello-world-title"
+        ];
     }
 
     async connectedCallback() {    
@@ -15,8 +18,10 @@ export class HelloWorldComponent extends HTMLElement {
         if (!this.hasAttribute('role'))
             this.setAttribute('role', 'helloworld');
 
+        this.title$.subscribe(x => this._render());
+
         this._render();
-        this._setEventListeners();
+        this._setEventListeners();       
     }
 
     private _render() {
@@ -25,7 +30,7 @@ export class HelloWorldComponent extends HTMLElement {
 
             </style>
 
-            <h1>Hello World via lit-html</h1>`, this.shadowRoot);
+            <h1>${this.title$.value} via lit-html</h1>`, this.shadowRoot);
     }
     
     private _setEventListeners() {
@@ -38,10 +43,13 @@ export class HelloWorldComponent extends HTMLElement {
 
     attributeChangedCallback (name, oldValue, newValue) {
         switch (name) {
-            default:
+            case "hello-world-title":
+                this.title$.next(newValue);
                 break;
         }
     }
+
+    public title$: BehaviorSubject<string> = new BehaviorSubject("");
 }
 
 customElements.define(`ce-hello-world`, HelloWorldComponent);
