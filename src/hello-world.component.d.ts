@@ -8,4 +8,5 @@ export declare class HelloWorldComponent extends HTMLElement {
     disconnectedCallback(): void;
     attributeChangedCallback(name: any, oldValue: any, newValue: any): void;
     title$: BehaviorSubject<string>;
+    onClick(): void;
 }

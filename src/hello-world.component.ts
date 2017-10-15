@@ -4,6 +4,8 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 export class HelloWorldComponent extends HTMLElement {
     constructor() {
         super();
+
+        this.onClick = this.onClick.bind(this);
     }
 
     static get observedAttributes () {
@@ -19,26 +21,31 @@ export class HelloWorldComponent extends HTMLElement {
             this.setAttribute('role', 'helloworld');
 
         this.title$.subscribe(x => this._render());
-
-        this._render();
+        
         this._setEventListeners();       
     }
 
     private _render() {
         render(html`
             <style>
-
+                :host {
+                    background-color: #fff;
+                    cursor:pointer;
+                    line-height: 3em;
+                    display: inline-block;
+                    padding: 0px 20px 0px 20px;
+                    margin: 20px 20px 20px 20px;
+                }
             </style>
-
-            <h1>${this.title$.value} via lit-html</h1>`, this.shadowRoot);
+            <slot></slot>`, this.shadowRoot);
     }
     
     private _setEventListeners() {
-
+        this.shadowRoot.addEventListener("click", this.onClick);
     }
 
     disconnectedCallback() {
-
+        this.shadowRoot.removeEventListener("click", this.onClick);
     }
 
     attributeChangedCallback (name, oldValue, newValue) {
@@ -50,6 +57,10 @@ export class HelloWorldComponent extends HTMLElement {
     }
 
     public title$: BehaviorSubject<string> = new BehaviorSubject("");
+
+    public onClick(): void {
+        alert(this.title$.value);
+    }
 }
 
 customElements.define(`ce-hello-world`, HelloWorldComponent);
