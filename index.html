@@ -26,28 +26,36 @@
 
         .ribbon {
             background-color: #fff;
-            display: table;
+            position: relative;
+            display: flex;
+            flex-flow: column;            
             width: 100%;
             min-height: 90px;
             overflow: hidden;
         }
 
-        .ribbon__body, .ribbon__label {
-            display: table;
-            width: 250%;
+        .ribbon__label {
+            display: block;   
+            position: relative;         
+            margin: 6px 0px 9px 8px;
+            font-size: 14px;
+            line-height:16px;
         }
 
-        .ribbon__label {
-            margin: 6px 0px 9px 8px;
+        .ribbon__body {
+            display: table;
+            position: relative;
+            width: 250%;
+            height: 100%;
+            min-height: 59px;
         }
 
         .ribbon__cell {
             display: table-cell;
+            position: relative;
             width: 20%;
-        }
-
-        .ribbon__body {
-            transform: translateX(-40%);
+            vertical-align: middle;
+            text-align: center;
         }
     </style>
 </head>
