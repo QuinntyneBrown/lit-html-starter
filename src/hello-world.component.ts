@@ -26,7 +26,7 @@ export class HelloWorldComponent extends HTMLElement {
     }
 
     private _render() {
-        render(html`
+        render(html`        
             <style>
                 :host {
                     background-color: #fff;

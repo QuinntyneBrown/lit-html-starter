@@ -10,6 +10,11 @@
       "es2015",
       "dom"
     ],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "plugins": [
+      {
+        "name": "typescript-lit-html-plugin"
+      }
+    ]
   }
 }
