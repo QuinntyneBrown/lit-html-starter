@@ -57,11 +57,50 @@
             vertical-align: middle;
             text-align: center;
         }
+
+        @media only screen and (min-width: 770px)  {
+            .ribbon__body {
+                width: 125%;
+            }
+        }
+
+        @media only screen and (min-width: 1200px)  {
+
+        }
+
+        @media only screen and (min-width: 1200px)  {
+            .ribbon {
+                flex-flow: row;
+            }
+
+            .ribbon__label {
+                width: 16.6666%;
+                margin: 0 0 0 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .ribbon__body {
+                min-height: 90px;
+                width: 83.3333%;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <div class="ribbon">
+            <div class="ribbon__label">Passenger Seats</div>
+            <div class="ribbon__body">
+                    <div class="ribbon__cell">1</div>
+                    <div class="ribbon__cell">2</div>
+                    <div class="ribbon__cell">3</div>
+                    <div class="ribbon__cell">4</div>
+                    <div class="ribbon__cell">5</div>
+            </div>
+        </div>
         <div class="ribbon">
             <div class="ribbon__label">Passenger Seats</div>
             <div class="ribbon__body">
