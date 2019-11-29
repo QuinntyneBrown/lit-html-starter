@@ -24,6 +24,18 @@
             background-color: rgb(241,241,241)
         }
 
+        ul,li {
+            list-style-type: none;
+            margin: 0;
+            padding:0;
+        }
+
+        .container {
+            max-width: 1170px;
+            margin: 0 auto;
+        }
+
+
         .ribbon {
             background-color: #fff;
             position: relative;
@@ -48,6 +60,7 @@
             width: 250%;
             height: 100%;
             min-height: 59px;
+            transition: transform 0.3s ease-out;
         }
 
         .ribbon__cell {
@@ -58,14 +71,14 @@
             text-align: center;
         }
 
+        .ribbon__cell img {
+            width: 165px;
+        }
+
         @media only screen and (min-width: 770px)  {
             .ribbon__body {
                 width: 125%;
             }
-        }
-
-        @media only screen and (min-width: 1200px)  {
-
         }
 
         @media only screen and (min-width: 1200px)  {
@@ -79,11 +92,14 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                background-color: #fff;
+                z-index: 1;
             }
 
             .ribbon__body {
                 min-height: 90px;
                 width: 83.3333%;
+                z-index: 0;
             }
         }
     </style>
@@ -92,6 +108,16 @@
 
     <div class="container">
         <div class="ribbon">
+            <div class="ribbon__label"></div>
+            <div class="ribbon__body">
+                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+            </div>
+        </div>        
+        <div class="ribbon">
             <div class="ribbon__label">Passenger Seats</div>
             <div class="ribbon__body">
                     <div class="ribbon__cell">1</div>
@@ -111,8 +137,68 @@
                     <div class="ribbon__cell">5</div>
             </div>
         </div>
+
+        <div>
+            <h3>Links</h3>
+            <div class="ribbon">
+                <div class="ribbon__label">&nbsp;</div>
+                <div class="ribbon__body">
+                        <div class="ribbon__cell">
+                            <ul>
+                                <li><a>link 1</a></li>
+                                <li><a>link 2</a></li>
+                                <li><a>link 3</a></li>
+                                <li><a>link 4</a></li>
+                                <li><a>link 5</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="ribbon__cell">
+                            <ul>
+                                <li><a>link 1</a></li>
+                                <li><a>link 2</a></li>
+                                <li><a>link 3</a></li>
+                                <li><a>link 4</a></li>
+                                <li><a>link 5</a></li>
+                            </ul>                        
+                        </div>
+                        
+                        <div class="ribbon__cell">
+                            <ul>
+                                <li><a>link 1</a></li>
+                                <li><a>link 2</a></li>
+                                <li><a>link 3</a></li>
+                                <li><a>link 4</a></li>
+                                <li><a>link 5</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="ribbon__cell">
+
+                            <ul>
+                                <li><a>link 1</a></li>
+                                <li><a>link 2</a></li>
+                                <li><a>link 3</a></li>
+                                <li><a>link 4</a></li>
+                                <li><a>link 5</a></li>
+                            </ul>                        </div>
+
+                        <div class="ribbon__cell">
+                            <ul>
+                                <li><a>link 1</a></li>
+                                <li><a>link 2</a></li>
+                                <li><a>link 3</a></li>
+                                <li><a>link 4</a></li>
+                                <li><a>link 5</a></li>
+                            </ul>
+                        </div>
+                </div>
+            </div>   
+        </div>
+             
     </div>
 
+    <script src="node_modules/custom-event-polyfill/polyfill.js"></script>
     <script src="node_modules/hammerjs/hammer.js"></script>
     <script src="dist/app.js"></script>
 
