@@ -1,10 +1,12 @@
-declare class RibbonTranslateCoordiantor {
-    static get instance(): RibbonTranslateCoordiantor;
+declare class RibbonController {
+    constructor();
+    static get instance(): RibbonController;
     private static _instance;
     translate: (options: {
         element: HTMLElement;
         deltaX: number;
     }) => boolean;
+    private _style;
     private _deltaX;
 }
 declare class Ribbon {

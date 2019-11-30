@@ -50,6 +50,7 @@
             width: 100%;
             min-height: 90px;
             overflow: hidden;
+            touch-action: none;
         }
 
         .ribbon__label {
@@ -67,6 +68,7 @@
             height: 100%;
             min-height: 59px;
             transition: transform 0.3s ease-out;
+            touch-action: none;
         }
 
         .ribbon__cell {
@@ -113,9 +115,9 @@
 <body>
 
     <div class="container">
-        <div class="ribbon">
-            <div class="ribbon__label"></div>
-            <div class="ribbon__body">
+        <div class="ribbon" style="touch-action: none;">
+            <div class="ribbon__label" style="touch-action: none;"></div>
+            <div class="ribbon__body" style="touch-action: none;">
                     <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
                     <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
                     <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
