@@ -12,22 +12,15 @@
               width=device-width,
               height=device-height,
               target-densitydpi=device-dpi" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">    
     <style>
         body, html {
             margin: 0;
-            padding: 0;
+            padding: 10px 0 0 0;
             font-family: Montserrat, sans-serif;
             font-size: 0.875em;
             height: 100%;
             background-color: rgb(241,241,241)
-        }
-
-        ul,li {
-            list-style-type: none;
-            margin: 0;
-            padding:0;
         }
 
         .container {
@@ -35,165 +28,95 @@
             margin: 0 auto;
         }
 
-
-        .ribbon {
+        .strip {
             background-color: #fff;
+            position: relative;           
+            display: block;
+            overflow: hidden;          
+        }
+
+        .strip ul, .strip li {
+            list-style-type: none;
+            margin: 0;
+            padding:0;
+        }
+
+        .strip li {
+            border-right:1px #dadada solid;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 16px;
+            padding: 0 8px;
+            cursor: pointer;
+            display: table-cell;
             position: relative;
-            display: flex;
-            flex-flow: column;            
-            width: 100%;
-            min-height: 90px;
-            overflow: hidden;
+            text-align: center;
+            vertical-align: middle;
+            height:42px;                   
+            font-family: Roboto, sans-serif;     
         }
 
-        .ribbon__label {
-            display: block;   
-            position: relative;         
-            margin: 6px 0px 9px 8px;
-            font-size: 14px;
-            line-height:16px;
+        .strip ul.strip--activated {
+            height: 40px;
         }
 
-        .ribbon__body {
+        .strip li.strip--active {
+            border-bottom: #c70200 4px solid;
+        }
+
+        .strip li:last-child {
+            border-right: none;
+        }
+
+        .strip ul {
             display: table;
             position: relative;
-            width: 250%;
-            height: 100%;
-            min-height: 59px;
+            width: 1168px;
+            border:1px #dadada solid;
             transition: transform 0.3s ease-out;
         }
 
-        .ribbon__cell {
-            display: table-cell;
-            position: relative;
-            width: 20%;
-            vertical-align: middle;
+        .strip__button {
+            background-color: #d8d8d8;
+            border: 1px solid #dadada;
+            cursor: pointer;
+            line-height: 42px;
+            margin: 0;
+            padding: 0;
+            position: absolute;
             text-align: center;
+            top: 0;
+            user-select: none;
+            width: 20px;
         }
 
-        .ribbon__cell img {
-            width: 165px;
-        }
+        .strip--next {
+            right: 0;
+        }       
 
-        @media only screen and (min-width: 770px)  {
-            .ribbon__body {
-                width: 125%;
-            }
-        }
-
-        @media only screen and (min-width: 1200px)  {
-            .ribbon {
-                flex-flow: row;
-            }
-
-            .ribbon__label {
-                width: 16.6666%;
-                margin: 0 0 0 8px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: #fff;
-                z-index: 1;
-            }
-
-            .ribbon__body {
-                min-height: 90px;
-                width: 83.3333%;
-                z-index: 0;
-            }
+        .strip--button-disabled {
+            display: none;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="ribbon">
-            <div class="ribbon__label"></div>
-            <div class="ribbon__body">
-                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
-                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
-                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
-                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
-                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
-            </div>
-        </div>        
-        <div class="ribbon">
-            <div class="ribbon__label">Passenger Seats</div>
-            <div class="ribbon__body">
-                    <div class="ribbon__cell">1</div>
-                    <div class="ribbon__cell">2</div>
-                    <div class="ribbon__cell">3</div>
-                    <div class="ribbon__cell">4</div>
-                    <div class="ribbon__cell">5</div>
-            </div>
-        </div>
-        <div class="ribbon">
-            <div class="ribbon__label">Passenger Seats</div>
-            <div class="ribbon__body">
-                    <div class="ribbon__cell">1</div>
-                    <div class="ribbon__cell">2</div>
-                    <div class="ribbon__cell">3</div>
-                    <div class="ribbon__cell">4</div>
-                    <div class="ribbon__cell">5</div>
-            </div>
-        </div>
-
-        <div>
-            <h3>Links</h3>
-            <div class="ribbon">
-                <div class="ribbon__label">&nbsp;</div>
-                <div class="ribbon__body">
-                        <div class="ribbon__cell">
-                            <ul>
-                                <li><a>link 1</a></li>
-                                <li><a>link 2</a></li>
-                                <li><a>link 3</a></li>
-                                <li><a>link 4</a></li>
-                                <li><a>link 5</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="ribbon__cell">
-                            <ul>
-                                <li><a>link 1</a></li>
-                                <li><a>link 2</a></li>
-                                <li><a>link 3</a></li>
-                                <li><a>link 4</a></li>
-                                <li><a>link 5</a></li>
-                            </ul>                        
-                        </div>
-                        
-                        <div class="ribbon__cell">
-                            <ul>
-                                <li><a>link 1</a></li>
-                                <li><a>link 2</a></li>
-                                <li><a>link 3</a></li>
-                                <li><a>link 4</a></li>
-                                <li><a>link 5</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="ribbon__cell">
-
-                            <ul>
-                                <li><a>link 1</a></li>
-                                <li><a>link 2</a></li>
-                                <li><a>link 3</a></li>
-                                <li><a>link 4</a></li>
-                                <li><a>link 5</a></li>
-                            </ul>                        </div>
-
-                        <div class="ribbon__cell">
-                            <ul>
-                                <li><a>link 1</a></li>
-                                <li><a>link 2</a></li>
-                                <li><a>link 3</a></li>
-                                <li><a>link 4</a></li>
-                                <li><a>link 5</a></li>
-                            </ul>
-                        </div>
-                </div>
-            </div>   
+        <div class="strip">
+            <ul>
+                <li><a>Toronto Raptors</a></li>
+                <li><a>Bucks</a></li>
+                <li><a>Lakers</a></li>
+                <li><a>Heat</a></li>
+                <li><a>Nuggets</a></li>
+                <li><a>Jazz</a></li>
+                <li><a>Portland Trail Blazers</a></li>
+                <li><a>Phoenix Suns</a></li>
+                <li><a>New Jersey Nets</a></li>
+                <li><a>San Antonio Spurs</a></li>
+            </ul>   
+            <span class="strip__button strip--previous strip--button-disabled"><</span>
+            <span class="strip__button strip--next">></span>         
         </div>
              
     </div>
