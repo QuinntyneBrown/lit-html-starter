@@ -1,44 +1,25 @@
-﻿//console.log(document.styleSheets[0].ownerNode["id"]);
-
-
-
-
-
-class RibbonEvents {
-    public static readonly reset = "RESET";
-    public static readonly translate = "TRANSLATE";
-}
-
-class CustomEventDispatcher {
-    static dispatch(element:HTMLElement, type:string, payload = null) {
-        element.dispatchEvent(new CustomEvent(type,{ bubbles: true, detail: payload }))
-    }
-}
-
-class RibbonTranslateCoordiantor {
-    constructor(element: HTMLElement) {
-        this._element = element;
-    }
-    
-    static initializeIfNull(element: HTMLElement) {
+﻿class RibbonTranslateCoordiantor {    
+    static get instance() {
         if(this._instance == null) {
-            this._instance = new RibbonTranslateCoordiantor(element);
-            document.addEventListener(RibbonEvents.translate,this._instance.handleTranslate);
+            this._instance = new RibbonTranslateCoordiantor();
         }
+        return this._instance;
     }
 
     private static _instance: RibbonTranslateCoordiantor;
 
-    public handleTranslate = (e: CustomEvent) => {
+    public translate = (options: { element:HTMLElement, deltaX: number }) => {
         
-        if(this._element.offsetWidth >= 1170) return false;
+        if(options.element.offsetWidth >= 1170) return false;
         
-        const newDeltax =  this._deltaX + e.detail.deltaX;
+        var body = options.element.querySelector(".ribbon__body") as HTMLElement;
 
-        if(newDeltax >  this._element.offsetWidth - this._body.offsetWidth) {            
+        const newDeltax =  this._deltaX + options.deltaX;
+
+        if(newDeltax >  options.element.offsetWidth - body.offsetWidth) {            
             this._deltaX = newDeltax;            
         } else {
-            this._deltaX = this._element.offsetWidth - this._body.offsetWidth;
+            this._deltaX = options.element.offsetWidth - body.offsetWidth;
         }
     
         if(newDeltax > 0)          
@@ -51,17 +32,14 @@ class RibbonTranslateCoordiantor {
         }
     }
 
-    _element: HTMLElement;
-    _deltaX: number = 0;
-    private get _body(): HTMLElement { return this._element.querySelector(".ribbon__body") as HTMLElement; };
+    private _deltaX: number = 0;    
 }
 
 class Ribbon {
 
     constructor(element: HTMLElement = null) {
         this._element = element;
-        this._registerEventListeners();    
-        RibbonTranslateCoordiantor.initializeIfNull(element);
+        this._registerEventListeners();            
     }
 
     private _registerEventListeners() {
@@ -71,7 +49,10 @@ class Ribbon {
     }
     
     private _handleSwipe = (e) => {            
-        CustomEventDispatcher.dispatch(this._element, RibbonEvents.translate, { deltaX: e.deltaX });
+        RibbonTranslateCoordiantor.instance.translate({
+            deltaX: e.deltaX,
+            element: this._element
+        });
     }
 
     static mount(element:HTMLElement) {
