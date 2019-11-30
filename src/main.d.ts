@@ -5,18 +5,20 @@ declare class RibbonEvents {
 declare class CustomEventDispatcher {
     static dispatch(element: HTMLElement, type: string, payload?: any): void;
 }
+declare class RibbonTranslateCoordiantor {
+    constructor(element: HTMLElement);
+    static initializeIfNull(element: HTMLElement): void;
+    private static _instance;
+    handleTranslate: (e: CustomEvent<any>) => boolean;
+    _element: HTMLElement;
+    _deltaX: number;
+    private get _body();
+}
 declare class Ribbon {
-    constructor(element: HTMLElement, $document: Document, $window: Window);
+    constructor(element?: HTMLElement);
     private _registerEventListeners;
-    private _handleTranslate;
-    private _handlePanMove;
-    private _handleReset;
-    private _handleResize;
+    private _handleSwipe;
     static mount(element: HTMLElement): void;
-    private _deltaX;
     private _element;
     private _hammerManager;
-    private get _body();
-    private _document;
-    private _window;
 }

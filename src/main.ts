@@ -1,4 +1,10 @@
-﻿class RibbonEvents {
+﻿//console.log(document.styleSheets[0].ownerNode["id"]);
+
+
+
+
+
+class RibbonEvents {
     public static readonly reset = "RESET";
     public static readonly translate = "TRANSLATE";
 }
@@ -9,26 +15,21 @@ class CustomEventDispatcher {
     }
 }
 
-class Ribbon {
-
-    constructor(element: HTMLElement, $document: Document, $window: Window) {
+class RibbonTranslateCoordiantor {
+    constructor(element: HTMLElement) {
         this._element = element;
-        this._document = $document;
-        this._window = $window;
-        this._registerEventListeners();
-        CustomEventDispatcher.dispatch(this._element, RibbonEvents.reset);
-    }
-
-    private _registerEventListeners() {
-        this._hammerManager = new Hammer(this._element);
-        this._hammerManager.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL });
-        this._hammerManager.on("panmove",this._handlePanMove);
-        this._document.addEventListener(RibbonEvents.translate,this._handleTranslate);
-        this._window.addEventListener("resize", this._handleResize);
-        this._document.addEventListener(RibbonEvents.reset, this._handleReset);
     }
     
-    private _handleTranslate = (e: CustomEvent) => {
+    static initializeIfNull(element: HTMLElement) {
+        if(this._instance == null) {
+            this._instance = new RibbonTranslateCoordiantor(element);
+            document.addEventListener(RibbonEvents.translate,this._instance.handleTranslate);
+        }
+    }
+
+    private static _instance: RibbonTranslateCoordiantor;
+
+    public handleTranslate = (e: CustomEvent) => {
         
         if(this._element.offsetWidth >= 1170) return false;
         
@@ -43,36 +44,46 @@ class Ribbon {
         if(newDeltax > 0)          
             this._deltaX = 0;            
         
-        this._body.style.transform = `translateX(${this._deltaX}px)`;
+        for(var i = 0; i < document.styleSheets.length; i++) {
+            if(document.styleSheets[i].ownerNode["id"] == "ribbon") {
+                (<any>document.styleSheets[i]).cssRules[0].style.transform = `translateX(${this._deltaX}px)`;                
+            }
+        }
     }
 
-    private _handlePanMove = (e) => {            
+    _element: HTMLElement;
+    _deltaX: number = 0;
+    private get _body(): HTMLElement { return this._element.querySelector(".ribbon__body") as HTMLElement; };
+}
+
+class Ribbon {
+
+    constructor(element: HTMLElement = null) {
+        this._element = element;
+        this._registerEventListeners();    
+        RibbonTranslateCoordiantor.initializeIfNull(element);
+    }
+
+    private _registerEventListeners() {
+        this._hammerManager = new Hammer(this._element);
+        this._hammerManager.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
+        this._hammerManager.on("swipeleft swiperight",this._handleSwipe);                
+    }
+    
+    private _handleSwipe = (e) => {            
         CustomEventDispatcher.dispatch(this._element, RibbonEvents.translate, { deltaX: e.deltaX });
-    }
-
-    private _handleReset = (e) => {
-        this._deltaX = 0;
-        this._body.style.transform = `translateX(${this._deltaX}px)`;
-    }
-
-    private _handleResize = (e) => {
-        CustomEventDispatcher.dispatch(this._element, RibbonEvents.reset);
     }
 
     static mount(element:HTMLElement) {
         var elements = element.querySelectorAll(".ribbon") as NodeListOf<HTMLElement>;
 
         for(var i = 0; i < elements.length; i++) {
-            new Ribbon(elements[i], document,window);
+            new Ribbon(elements[i]);
         }
     }
 
-    private _deltaX = 0;
     private _element: HTMLElement;
-    private _hammerManager: HammerManager;
-    private get _body(): HTMLElement { return this._element.querySelector(".ribbon__body") as HTMLElement; };
-    private _document: Document;
-    private _window: Window;
+    private _hammerManager: HammerManager;    
 }
 
 document.addEventListener("readystatechange",() => {
