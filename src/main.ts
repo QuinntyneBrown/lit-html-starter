@@ -3,15 +3,24 @@
     constructor(element: HTMLElement) {
         this._element = element;
         this._hammerManager = new Hammer(this._element);
-        this._hammerManager.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL });
-        this._hammerManager.on("panmove",this._handlePanMove);
+        this._hammerManager.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
+        this._hammerManager.on("swipeleft swiperight",this._handlePanMove);
+        this._setButtons();
     }
 
     private _handlePanMove = (e) => {
-
         if (this._element.offsetWidth >= 1170) return false;
 
         this._deltaX = this._deltaX + e.deltaX;
+
+        this._setButtons();
+
+        this._body.style.transform = `translateX(${this._deltaX}px)`;
+
+        return true;
+    }
+
+    private _setButtons() {
 
         if(this._deltaX > this._max) {
             this._previousButton.classList.remove(this._disabledCssClass)                
@@ -21,7 +30,6 @@
             this._nextButton.classList.remove(this._disabledCssClass)                
         }
 
-
         if (this._deltaX <= this._max) {
             this._deltaX = this._max;   
             
@@ -29,16 +37,12 @@
                 this._nextButton.classList.add(this._disabledCssClass)
         }
 
-        if(this._deltaX  > this._min) {
+        if(this._deltaX  >= this._min) {
             this._deltaX = this._min;    
             
             if(!this._previousButton.classList.contains(this._disabledCssClass))
                 this._previousButton.classList.add(this._disabledCssClass)            
-        }
-
-        this._body.style.transform = `translateX(${this._deltaX}px)`;
-
-        return true;
+        }        
     }
 
     static mount(element:HTMLElement) {
