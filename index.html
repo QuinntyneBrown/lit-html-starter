@@ -43,6 +43,7 @@
 
 
         .ribbon {
+            --number-of-items: 5;
             background-color: #fff;
             position: relative;
             display: flex;
@@ -50,7 +51,8 @@
             width: 100%;
             min-height: 90px;
             overflow: hidden;
-            touch-action: none;
+            background-color: #fff;
+            z-index: 1;
         }
 
         .ribbon__label {
@@ -59,22 +61,24 @@
             margin: 6px 0px 9px 8px;
             font-size: 14px;
             line-height:16px;
+            font-weight: 800;
         }
 
         .ribbon__body {
             display: table;
             position: relative;
-            width: 250%;
+            width: calc(5/2 * 100%);
             height: 100%;
             min-height: 59px;
             transition: transform 0.3s ease-out;
             touch-action: none;
+            z-index: 0;
         }
 
         .ribbon__cell {
             display: table-cell;
             position: relative;
-            width: 20%;
+            width: calc(100% / 5);
             vertical-align: middle;
             text-align: center;
         }
@@ -85,7 +89,7 @@
 
         @media only screen and (min-width: 770px)  {
             .ribbon__body {
-                width: 125%;
+                width: calc(5/4 * 100%);
             }
         }
 
@@ -96,7 +100,7 @@
 
             .ribbon__label {
                 width: 16.6666%;
-                margin: 0 0 0 8px;
+                margin: 0 0 0 0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -106,8 +110,15 @@
 
             .ribbon__body {
                 min-height: 90px;
-                width: 83.3333%;
-                z-index: 0;
+                width: 83.3333%;                
+            }
+
+            .ribbon__label, .ribbon__cell {
+                width: 195px;
+            }
+
+            .ribbon__body {
+                width: initial;
             }
         }
     </style>
@@ -124,7 +135,17 @@
                     <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
                     <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
             </div>
-        </div>        
+        </div> 
+        <div class="ribbon" style="touch-action: none;">
+            <div class="ribbon__label" style="touch-action: none;"></div>
+            <div class="ribbon__body" style="touch-action: none;">
+                <div class="ribbon__cell">2019 BMW i8</div>
+                <div class="ribbon__cell">2019 BMW i8</div>
+                <div class="ribbon__cell">2019 BMW i8</div>
+                <div class="ribbon__cell">2019 BMW i8</div>
+                <div class="ribbon__cell">2019 BMW i8</div>
+            </div>
+        </div>                 
         <div class="ribbon">
             <div class="ribbon__label">Passenger Seats</div>
             <div class="ribbon__body">

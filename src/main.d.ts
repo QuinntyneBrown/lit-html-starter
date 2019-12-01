@@ -5,7 +5,7 @@ declare class RibbonController {
     translate: (options: {
         element: HTMLElement;
         deltaX: number;
-    }) => boolean;
+    }) => void;
     private _style;
     private _deltaX;
 }
@@ -13,7 +13,9 @@ declare class Ribbon {
     constructor(element?: HTMLElement);
     private _registerEventListeners;
     private _handleSwipe;
-    static mount(element: HTMLElement): void;
+    static mount(element?: HTMLElement): void;
     private _element;
     private _hammerManager;
+    private get _body();
+    private get _numberOfItems();
 }
