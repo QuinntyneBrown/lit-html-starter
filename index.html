@@ -63,6 +63,7 @@
             font-size: 14px;
             line-height:16px;
             font-weight: 800;
+            z-index: 1;
         }
 
         .ribbon__body {
@@ -74,6 +75,7 @@
             transition: transform 0.3s ease-out;
             touch-action: none;
             z-index: 0;
+            min-width: 100%;
         }
 
         .ribbon__cell {
@@ -82,11 +84,31 @@
             width: calc(100% / var(--number-of-items));
             vertical-align: middle;
             text-align: center;
+            z-index: -1;
         }
 
         .ribbon__cell img {
             width: 165px;
         }
+
+        .ribbon__cell:first-child:nth-last-child(1) {
+                width: 100%;
+        }
+
+        .ribbon__cell:first-child:nth-last-child(2),
+        .ribbon__cell:first-child:nth-last-child(2) ~ li {
+            width: 50%;
+        }
+
+        .ribbon__cell:first-child:nth-last-child(3),
+        .ribbon__cell:first-child:nth-last-child(3) ~ li {
+            width: 33.3333%;
+        }
+
+        .ribbon__cell:first-child:nth-last-child(4),
+        .ribbon__cell:first-child:nth-last-child(4) ~ li {
+            width: 25%;
+        }        
 
         @media only screen and (min-width: 770px)  {
             .ribbon__body {
@@ -96,10 +118,13 @@
 
         @media only screen and (min-width: 1200px)  {
 
+            .ribbon__body {
+                --display-items: 5;
+            }
+
             .ribbon {
                 display: grid;
-                display: -ms-grid;
-                --display-items: 0;
+                display: -ms-grid;                
                 max-width: 1170px;
                 overflow: hidden;
                 grid-template-columns: 195px 975px;
@@ -107,7 +132,7 @@
             }
 
             .ribbon__body {
-                width: calc(var(--number-of-items)/var(--display-items) * (100% - 195px));
+                width: calc(var(--number-of-items)/var(--display-items) * 975px);
             }
 
             .ribbon__label {
@@ -117,11 +142,7 @@
                 align-items: center;
                 justify-content: center;
                 background-color: #fff;
-                -ms-grid-column: 1;
-            }
-
-            .ribbon__cell {
-                width: 195px;
+                -ms-grid-column: 1;                
             }
             
             .ribbon__bodyContainer {
@@ -129,7 +150,7 @@
                 max-width: 1170px;
                 overflow: hidden;
                 -ms-grid-column: 2;
-            }
+            }            
         }
     </style>
 </head>
@@ -150,7 +171,7 @@
             </div>
 
         </div> 
-        <!-- <div class="ribbon" style="touch-action: none;">
+        <div class="ribbon" style="touch-action: none;">
             <div class="ribbon__label" style="touch-action: none;"></div>
             <div class="ribbon__body" style="touch-action: none;">
                 <div class="ribbon__cell">2019 BMW i8</div>
@@ -237,7 +258,7 @@
                         </div>
                 </div>
             </div>   
-        </div> -->
+        </div>
              
     </div>
 

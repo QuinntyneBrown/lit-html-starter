@@ -21,24 +21,17 @@ class RibbonController {
         
         const body = options.element.querySelector(".ribbon__body") as HTMLElement;
 
-        if(options.element.offsetWidth < body.offsetWidth) {
-        
+        const container = options.element.querySelector(".ribbon__bodyContainer") as HTMLElement;
+
+        if(container.offsetWidth < body.offsetWidth) {
+
             this._deltaX = this._deltaX + options.deltaX;
 
-            if(this._deltaX <=  options.element.offsetWidth - body.offsetWidth)            
-                this._deltaX = options.element.offsetWidth - body.offsetWidth;
+            if(this._deltaX <=  container.offsetWidth - body.offsetWidth)            
+                this._deltaX = container.offsetWidth - body.offsetWidth;
             
             if(this._deltaX > 0)          
                 this._deltaX = 0;            
-        } else {
-
-            this._deltaX = this._deltaX + options.deltaX;
-
-            if(this._deltaX <=  options.element.offsetWidth - body.offsetWidth - 195)            
-                this._deltaX = options.element.offsetWidth - body.offsetWidth - 195;
-            
-            if(this._deltaX > 0)          
-                this._deltaX = 0;  
         }
 
         this._style.transform = `translateX(${this._deltaX}px)`;
@@ -62,7 +55,8 @@ class Ribbon {
         this._hammerManager.on("swipeleft swiperight",this._handleSwipe);                
     }
     
-    private _handleSwipe = (e) => {        
+    private _handleSwipe = (e) => {   
+        alert("?")     
         if(e.type === "swipeleft")
             RibbonController.instance.translate({
                 deltaX: -1 * this._body.offsetWidth / this._numberOfItems,
