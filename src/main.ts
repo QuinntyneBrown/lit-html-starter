@@ -30,6 +30,15 @@ class RibbonController {
             
             if(this._deltaX > 0)          
                 this._deltaX = 0;            
+        } else {
+
+            this._deltaX = this._deltaX + options.deltaX;
+
+            if(this._deltaX <=  options.element.offsetWidth - body.offsetWidth - 195)            
+                this._deltaX = options.element.offsetWidth - body.offsetWidth - 195;
+            
+            if(this._deltaX > 0)          
+                this._deltaX = 0;  
         }
 
         this._style.transform = `translateX(${this._deltaX}px)`;

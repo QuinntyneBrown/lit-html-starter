@@ -43,7 +43,8 @@
 
 
         .ribbon {
-            --number-of-items: 5;
+            --number-of-items: 6;
+            --display-items: 2;
             background-color: #fff;
             position: relative;
             display: flex;
@@ -51,8 +52,8 @@
             width: 100%;
             min-height: 90px;
             overflow: hidden;
-            background-color: #fff;
-            z-index: 1;
+            background-color: #fff;      
+            max-width: 1170px;      
         }
 
         .ribbon__label {
@@ -67,7 +68,7 @@
         .ribbon__body {
             display: table;
             position: relative;
-            width: calc(5/2 * 100%);
+            width: calc(var(--number-of-items)/var(--display-items) * 100%);
             height: 100%;
             min-height: 59px;
             transition: transform 0.3s ease-out;
@@ -78,7 +79,7 @@
         .ribbon__cell {
             display: table-cell;
             position: relative;
-            width: calc(100% / 5);
+            width: calc(100% / var(--number-of-items));
             vertical-align: middle;
             text-align: center;
         }
@@ -89,36 +90,45 @@
 
         @media only screen and (min-width: 770px)  {
             .ribbon__body {
-                width: calc(5/4 * 100%);
+                --display-items: 4;
             }
         }
 
         @media only screen and (min-width: 1200px)  {
+
             .ribbon {
-                flex-flow: row;
+                display: grid;
+                display: -ms-grid;
+                --display-items: 0;
+                max-width: 1170px;
+                overflow: hidden;
+                grid-template-columns: 195px 975px;
+                -ms-grid-columns: 195px 975px;
+            }
+
+            .ribbon__body {
+                width: calc(var(--number-of-items)/var(--display-items) * (100% - 195px));
             }
 
             .ribbon__label {
-                width: 16.6666%;
+                width: 195px;
                 margin: 0 0 0 0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 background-color: #fff;
-                z-index: 1;
+                -ms-grid-column: 1;
             }
 
-            .ribbon__body {
-                min-height: 90px;
-                width: 83.3333%;                
-            }
-
-            .ribbon__label, .ribbon__cell {
+            .ribbon__cell {
                 width: 195px;
             }
-
-            .ribbon__body {
-                width: initial;
+            
+            .ribbon__bodyContainer {
+                min-height: 90px;   
+                max-width: 1170px;
+                overflow: hidden;
+                -ms-grid-column: 2;
             }
         }
     </style>
@@ -128,15 +138,19 @@
     <div class="container">
         <div class="ribbon" style="touch-action: none;">
             <div class="ribbon__label" style="touch-action: none;"></div>
-            <div class="ribbon__body" style="touch-action: none;">
+            <div class="ribbon__bodyContainer">
+                <div class="ribbon__body" style="touch-action: none;">
                     <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
                     <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
                     <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
                     <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
                     <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                </div>
             </div>
+
         </div> 
-        <div class="ribbon" style="touch-action: none;">
+        <!-- <div class="ribbon" style="touch-action: none;">
             <div class="ribbon__label" style="touch-action: none;"></div>
             <div class="ribbon__body" style="touch-action: none;">
                 <div class="ribbon__cell">2019 BMW i8</div>
@@ -223,7 +237,7 @@
                         </div>
                 </div>
             </div>   
-        </div>
+        </div> -->
              
     </div>
 
