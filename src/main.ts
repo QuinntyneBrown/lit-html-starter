@@ -56,7 +56,7 @@ class Ribbon {
     }
     
     private _handleSwipe = (e) => {   
-        alert("?")     
+    
         if(e.type === "swipeleft")
             RibbonController.instance.translate({
                 deltaX: -1 * this._body.offsetWidth / this._numberOfItems,
