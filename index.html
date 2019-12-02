@@ -35,6 +35,15 @@
             margin: 0 auto;
         }
 
+        a {
+            cursor: pointer;
+        }
+
+        .panel {
+
+            transition: max-height 0.3s ease-out;          
+        }
+
         .ribbon {
             --number-of-items: 6;
             --display-items: 2;
@@ -150,32 +159,24 @@
 <body>
 
     <div class="container">
-        <div class="ribbon" style="touch-action: none;">
-            <div class="ribbon__label" style="touch-action: none;"></div>
-            <div class="ribbon__bodyContainer">
-                <div class="ribbon__body" style="touch-action: none;">
-                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
-                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
-                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
-                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
-                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
-                    <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+        <a>Link</a>
+
+        <div class="panel">
+            <div class="ribbon" style="touch-action: none;">
+                    <div class="ribbon__label" style="touch-action: none;"></div>
+                    <div class="ribbon__bodyContainer">
+                        <div class="ribbon__body" style="touch-action: none;">
+                            <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                            <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                            <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                            <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                            <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                            <div class="ribbon__cell"><img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2019BMC680001/2019BMC68000101.jpg"/></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>  
-        <div class="ribbon" style="touch-action: none;">
-            <div class="ribbon__label" style="touch-action: none;">Passenger</div>
-            <div class="ribbon__bodyContainer">
-                <div class="ribbon__body" style="touch-action: none;">
-                    <div class="ribbon__cell">1</div>
-                    <div class="ribbon__cell">2</div>
-                    <div class="ribbon__cell">3</div>
-                    <div class="ribbon__cell">4</div>
-                    <div class="ribbon__cell">5</div>
-                    <div class="ribbon__cell">6</div>
-                </div>
-            </div>
-        </div>                     
+        </div>
+                     
     </div>
 
     <script src="node_modules/hammerjs/hammer.js"></script>

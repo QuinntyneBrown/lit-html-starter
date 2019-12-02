@@ -86,6 +86,20 @@ class Ribbon {
 }
 
 document.addEventListener("readystatechange",() => {
-    if(document.readyState == "complete")
-        Ribbon.mount();    
+    if(document.readyState == "complete") {
+        Ribbon.mount();
+        
+        const link = document.querySelector("a");
+
+        link.addEventListener("click",() => {            
+            
+            var panel = document.querySelector(".panel") as HTMLElement;
+            if (!panel.style.maxHeight || panel.style.maxHeight != "0px") {
+              panel.style.maxHeight = "0px";
+              panel.style.overflow = "hidden";
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            }           
+        })
+    }
 })
