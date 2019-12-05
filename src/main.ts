@@ -1,6 +1,4 @@
-﻿//https://github.com/hammerjs/hammer-time
-
-class RibbonController {    
+﻿class RibbonController {    
     constructor() {
         for(var i = 0; i < document.styleSheets.length; i++) {
             if(document.styleSheets[i].ownerNode["id"] == "ribbon") {
@@ -44,19 +42,13 @@ class RibbonController {
 
 class Ribbon {
 
-    constructor(element: HTMLElement = null) {
+    constructor(element: HTMLElement) {
         this._element = element;
-        //this._registerEventListeners(); 
-        this._registerTouchEventListeners();           
+        this._registerEventListeners();        
+        this._numberOfItems = this._element.querySelectorAll(".ribbon__cell").length;           
     }
 
     private _registerEventListeners() {
-        this._hammerManager = new Hammer(this._element);
-        this._hammerManager.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 1, velocity: 0.1 });
-        this._hammerManager.on("swipeleft swiperight",this._handleSwipe);                
-    }
-
-    private _registerTouchEventListeners() {
         this._element.addEventListener("mousedown",this._handleMouseDown);
         this._element.addEventListener("mouseup",this._handleMouseUp);
         this._element.addEventListener("touchstart", this._handleTouchStart);
@@ -64,36 +56,37 @@ class Ribbon {
         this._element.addEventListener("touchend", this._handleTouchEnd);
     }
 
-    private _handleMouseDown = (e) => {
+    private _handleMouseDown = (e:MouseEvent) => {
         this._touchStart.x = e.offsetX;
         this._touchStart.y = e.offsetY;
         this._touchStart.timestamp = Date.now();
     }
 
-    private _handleMouseUp = (e) => {
+    private _handleMouseUp = (e:MouseEvent) => {
         this._touchMove.x = e.offsetX;
         this._touchMove.y = e.offsetY;  
         this._touchMove.timestamp = Date.now(); 
         this._handleTouchEnd();
     }
 
-    private _handleTouchStart = (e) => {        
+    private _handleTouchStart = (e: TouchEvent) => {        
         this._touchStart.x = e.touches[0].pageX;
         this._touchStart.y = e.touches[0].pageY;
         this._touchStart.timestamp = Date.now();            
     }
 
-    private _handleTouchMove = (e) => {
+    private _handleTouchMove = (e:TouchEvent) => {
         this._touchMove.x = e.touches[0].pageX;
         this._touchMove.y = e.touches[0].pageY;
         this._touchMove.timestamp = Date.now();     
     }
 
     private _handleTouchEnd = () => {
-        const deltaY = Math.abs(this._touchStart.y - this._touchMove.y);
-        const deltaTime = Math.abs(this._touchStart.timestamp - this._touchMove.timestamp);
+        const absY = Math.abs(this._touchStart.y - this._touchMove.y);
+        const absX = Math.abs(this._touchMove.x - this._touchStart.x);
+        const absTime = Math.abs(this._touchStart.timestamp - this._touchMove.timestamp);
 
-        if(deltaY > 20 || deltaTime > 200) return;
+        if(absY > 40 || absTime > 200 || absX < 100) return;
 
         if(this._touchStart.x - this._touchMove.x > 0) {
             RibbonController.instance.translate({
@@ -107,22 +100,6 @@ class Ribbon {
             });
         }
     }
-    
-    private _handleSwipe = (e) => {   
-    
-        if(e.type === "swipeleft")
-            RibbonController.instance.translate({
-                deltaX: -1 * this._body.offsetWidth / this._numberOfItems,
-                element: this._element
-            });
-
-        if(e.type === "swiperight")
-            RibbonController.instance.translate({
-                deltaX: 1 * this._body.offsetWidth / this._numberOfItems,
-                element: this._element
-            });            
-
-    }
 
     static mount(element:HTMLElement = document.querySelector("body")) {
         var elements = element.querySelectorAll(".ribbon") as NodeListOf<HTMLElement>;
@@ -132,12 +109,11 @@ class Ribbon {
         }
     }
 
-    private _touchStart: {x:number,y:number, timestamp:number} = <any>{};
-    private _touchMove: {x:number,y:number, timestamp:number} = <any>{};
+    private _touchStart: { x:number, y:number, timestamp:number } = <any>{};
+    private _touchMove: { x:number, y:number, timestamp:number } = <any>{};
     private _element: HTMLElement;
-    private _hammerManager: HammerManager;
     private get _body():HTMLElement { return this._element.querySelector(".ribbon__body") as HTMLElement; }    
-    private get _numberOfItems():number { return this._element.querySelectorAll(".ribbon__cell").length; } 
+    private _numberOfItems:number; 
 }
 
 document.addEventListener("readystatechange",() => {
