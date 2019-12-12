@@ -28,55 +28,73 @@
             margin: 0 auto;
         }
 
-        .strip {
+        .slider {
             background-color: #fff;
             position: relative;           
             display: block;
             overflow: hidden;          
         }
 
-        .strip ul, .strip li {
-            list-style-type: none;
+        .slider .slider__body, .slider__item {
             margin: 0;
             padding:0;
         }
 
-        .strip li {
-            border-right:1px #dadada solid;
+        .slider .slider__item {
             font-size: 16px;
             font-weight: 500;
             line-height: 16px;
-            padding: 0 8px;
+            padding: 0;
+            margin: 0;
             cursor: pointer;
-            display: table-cell;
             position: relative;
-            text-align: center;
-            vertical-align: middle;
-            height:42px;                   
-            font-family: Roboto, sans-serif;     
+            text-align: center;                              
+            font-family: Roboto, sans-serif; 
+            display: block;    
         }
 
-        .strip ul.strip--activated {
-            height: 40px;
-        }
 
-        .strip li.strip--active {
-            border-bottom: #c70200 4px solid;
-        }
-
-        .strip li:last-child {
-            border-right: none;
-        }
-
-        .strip ul {
-            display: table;
+        .slider {
+            display: block;
             position: relative;
             width: 1168px;
             border:1px #dadada solid;
             transition: transform 0.3s ease-out;
         }
 
-        .strip__button {
+        img {
+            max-width: 100%;
+        }
+
+        .slider__body {
+            display: grid;
+            display: -ms-grid;
+            width: calc(5/5 * 100%);
+            grid-auto-flow: column;
+            -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+        }
+
+        .slider__item:nth-child(1) {
+            -ms-grid-column: 1;
+        }
+
+        .slider__item:nth-child(2) {
+            -ms-grid-column: 2;
+        }
+
+        .slider__item:nth-child(3) {
+            -ms-grid-column: 3;
+        }
+
+        .slider__item:nth-child(4) {
+            -ms-grid-column: 4;
+        }
+
+        .slider__item:nth-child(5) {
+            -ms-grid-column: 5;
+        }
+
+        .slider__button {
             background-color: #d8d8d8;
             border: 1px solid #dadada;
             cursor: pointer;
@@ -90,11 +108,11 @@
             width: 20px;
         }
 
-        .strip--next {
+        .slider--next {
             right: 0;
         }       
 
-        .strip--button-disabled {
+        .slider--button-disabled {
             display: none;
         }
     </style>
@@ -102,21 +120,36 @@
 <body>
 
     <div class="container">
-        <div class="strip" style="touch-action: none;">
-            <ul>
-                <li><a>Toronto Raptors</a></li>
-                <li><a>Bucks</a></li>
-                <li><a>Lakers</a></li>
-                <li><a>Heat</a></li>
-                <li><a>Nuggets</a></li>
-                <li><a>Jazz</a></li>
-                <li><a>Portland Trail Blazers</a></li>
-                <li><a>Phoenix Suns</a></li>
-                <li><a>New Jersey Nets</a></li>
-                <li><a>San Antonio Spurs</a></li>
-            </ul>   
-            <span class="strip__button strip--previous strip--button-disabled"><</span>
-            <span class="strip__button strip--next">></span>         
+        <div class="slider">
+            <div class="slider__body">
+                <div class="slider__item">
+                    <img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2020LRS020001/2020LRS02000101.jpg">
+                    <h3>2019 Land Rover Range Rover</h3>
+                    <h2>$100,000</h2>
+                </div>
+                <div class="slider__item">
+                    <img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2020LRS020001/2020LRS02000101.jpg">
+                    <h3>2019 Land Rover Range Rover</h3>
+                    <h2>$100,000</h2>
+                </div>
+                <div class="slider__item">
+                    <img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2020LRS020001/2020LRS02000101.jpg">
+                    <h3>2019 Land Rover Range Rover</h3>
+                    <h2>$100,000</h2>
+                </div>
+                <div  class="slider__item">
+                    <img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2020LRS020001/2020LRS02000101.jpg">
+                    <h3>2019 Land Rover Range Rover</h3>
+                    <h2>$100,000</h2>
+                </div>
+                <div  class="slider__item">
+                    <img src="https://tdrvehicles2.azureedge.net/photos/chrome/Expanded/White/2020LRS020001/2020LRS02000101.jpg">
+                    <h3>2019 Land Rover Range Rover</h3>
+                    <h2>$100,000</h2>
+                </div>                                                                
+            </div>   
+            <span class="slider__button slider--previous slider--button-disabled"><</span>
+            <span class="slider__button slider--next">></span>         
         </div>
              
     </div>

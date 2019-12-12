@@ -1,25 +1,17 @@
-﻿class Strip {
+﻿class Slider {
 
     constructor(element: HTMLElement) {
         this._element = element;
-        this._hammerManager = new Hammer(this._element);
-        this._hammerManager.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
-        this._hammerManager.on("swipeleft swiperight",this._handlePanMove);
         this._setButtons();
+        this._registerEventListeners();        
     }
 
-    private _handlePanMove = (e) => {
-        if (this._element.offsetWidth >= 1170) return false;
-
-        this._deltaX = this._deltaX + e.deltaX;
-
-        this._setButtons();
-
-        this._body.style.transform = `translateX(${this._deltaX}px)`;
-
-        return true;
+    private _registerEventListeners() {
+        this._nextButton.addEventListener("click",() => {
+            alert("?")
+        });
     }
-
+    
     private _setButtons() {
 
         if(this._deltaX > this._max) {
@@ -46,25 +38,25 @@
     }
 
     static mount(element:HTMLElement) {
-        var elements = element.querySelectorAll(".strip") as NodeListOf<HTMLElement>;
+        var elements = element.querySelectorAll(".slider") as NodeListOf<HTMLElement>;
 
         for(var i = 0; i < elements.length; i++) {
-            new Strip(elements[i]);
+            new Slider(elements[i]);
         }
     }
 
     private _deltaX = 0;
     private _element: HTMLElement;
-    private _hammerManager: HammerManager;
-    private get _body(): HTMLElement { return this._element.querySelector("ul"); };
-    private get _nextButton(): HTMLElement { return this._element.querySelector(".strip--next") as HTMLElement; }
-    private get _previousButton(): HTMLElement { return this._element.querySelector(".strip--previous") as HTMLElement; }
+
+    private get _body(): HTMLElement { return this._element.querySelector(".slider__body"); };
+    private get _nextButton(): HTMLElement { return this._element.querySelector(".slider--next") as HTMLElement; }
+    private get _previousButton(): HTMLElement { return this._element.querySelector(".slider--previous") as HTMLElement; }
     private get _max():number { return this._element.offsetWidth - this._body.offsetWidth; }
     private get _min() { return 0; }
-    private _disabledCssClass = "strip--button-disabled";
+    private _disabledCssClass = "slider--button-disabled";
 }
 
 document.addEventListener("readystatechange",() => {
     if(document.readyState == "complete")
-        Strip.mount(document.querySelector("body"));    
+        Slider.mount(document.querySelector("body"));    
 })
